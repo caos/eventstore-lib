@@ -45,9 +45,9 @@ func TestCreateStorageFilter(t *testing.T) {
 	stor.EXPECT().BuildFilter(typeFilter, typeField).Return(func(storage.Query) {}, nil)
 	stor.EXPECT().BuildFilter(commandFilter, commandField).Return(func(storage.Query) {}, nil)
 
-	filterFuncs, err := svc.createStorageFilter(eventType, filters...)
+	Filters, err := svc.createStorageFilter(eventType, filters...)
 	require.NoError(t, err)
-	assert.Len(t, filterFuncs, 2)
+	assert.Len(t, Filters, 2)
 }
 
 func TestCreateStorageFilterWrongFieldname(t *testing.T) {
@@ -62,9 +62,9 @@ func TestCreateStorageFilterWrongFieldname(t *testing.T) {
 	filters = append(filters, wrongFilter)
 
 	eventType := reflect.TypeOf(testEvent{})
-	filterFuncs, err := svc.createStorageFilter(eventType, filters...)
+	Filters, err := svc.createStorageFilter(eventType, filters...)
 
 	require.Error(t, err)
 	assert.True(t, errors.IsErrorInvalidArgument(err))
-	assert.Empty(t, filterFuncs)
+	assert.Empty(t, Filters)
 }

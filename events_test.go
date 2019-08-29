@@ -63,8 +63,8 @@ func TestCreateEventsOneEvent(t *testing.T) {
 	svc := new(Service)
 	svc.createSequenceFilters = func(events ...models.Event) (check []lastSequenceCheck, err error) {
 		return []lastSequenceCheck{
-			lastSequenceCheck{eventSequence: 32, filters: []storage.FilterFunc{func(storage.Query) {}}},
-			lastSequenceCheck{eventSequence: 5436, filters: []storage.FilterFunc{func(storage.Query) {}}},
+			lastSequenceCheck{eventSequence: 32, filters: []storage.Filter{func(storage.Query) {}}},
+			lastSequenceCheck{eventSequence: 5436, filters: []storage.Filter{func(storage.Query) {}}},
 		}, nil
 	}
 	svc.isLatestSequences = func(ctx context.Context, checks ...lastSequenceCheck) bool {
@@ -87,7 +87,7 @@ func TestCreateEventsWrongSequence(t *testing.T) {
 	svc.createSequenceFilters = func(events ...models.Event) (check []lastSequenceCheck, err error) {
 		filters := make([]lastSequenceCheck, filterCount)
 		for i := uint64(0); i < uint64(filterCount); i++ {
-			filters[i] = lastSequenceCheck{eventSequence: i, filters: []storage.FilterFunc{func(storage.Query) {}}}
+			filters[i] = lastSequenceCheck{eventSequence: i, filters: []storage.Filter{func(storage.Query) {}}}
 		}
 		return filters, nil
 	}
@@ -119,7 +119,7 @@ func TestGetEvents(t *testing.T) {
 	eventFilter = filter
 
 	store := storage_mock.NewMockStorage(ctrl)
-	store.EXPECT().GetEvents(context.Background(), events, []storage.FilterFunc{})
+	store.EXPECT().GetEvents(context.Background(), events, []storage.Filter{})
 	svc.stor = store
 
 	err := svc.GetEvents(context.Background(), events, eventFilter)

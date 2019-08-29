@@ -11,7 +11,7 @@ import (
 
 type lastSequenceCheck struct {
 	eventSequence uint64
-	filters       []storage.FilterFunc
+	filters       []storage.Filter
 }
 
 func (svc *Service) setCreateSequenceFilters() {

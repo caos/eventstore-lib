@@ -36,10 +36,10 @@ func (m *MockStorage) EXPECT() *MockStorageMockRecorder {
 }
 
 // BuildFilter mocks base method
-func (m *MockStorage) BuildFilter(arg0 models.Filter, arg1 reflect.StructField) (storage.FilterFunc, error) {
+func (m *MockStorage) BuildFilter(arg0 models.Filter, arg1 reflect.StructField) (storage.Filter, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "BuildFilter", arg0, arg1)
-	ret0, _ := ret[0].(storage.FilterFunc)
+	ret0, _ := ret[0].(storage.Filter)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -84,7 +84,7 @@ func (mr *MockStorageMockRecorder) GetEvent(arg0, arg1, arg2 interface{}) *gomoc
 }
 
 // GetEvents mocks base method
-func (m *MockStorage) GetEvents(arg0 context.Context, arg1 models.Events, arg2 ...storage.FilterFunc) error {
+func (m *MockStorage) GetEvents(arg0 context.Context, arg1 models.Events, arg2 ...storage.Filter) error {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {
@@ -117,7 +117,7 @@ func (mr *MockStorageMockRecorder) Health() *gomock.Call {
 }
 
 // IsLatestSequence mocks base method
-func (m *MockStorage) IsLatestSequence(arg0 context.Context, arg1 uint64, arg2 ...storage.FilterFunc) bool {
+func (m *MockStorage) IsLatestSequence(arg0 context.Context, arg1 uint64, arg2 ...storage.Filter) bool {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{arg0, arg1}
 	for _, a := range arg2 {

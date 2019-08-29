@@ -51,8 +51,8 @@ func TestIsLatestSequences(t *testing.T) {
 
 	filters := make([]lastSequenceCheck, 1)
 	for i := uint64(0); int(i) < len(filters); i++ {
-		filterFuncs := []storage.FilterFunc{func(storage.Query) {}}
-		filters[i] = lastSequenceCheck{eventSequence: i, filters: filterFuncs}
+		Filters := []storage.Filter{func(storage.Query) {}}
+		filters[i] = lastSequenceCheck{eventSequence: i, filters: Filters}
 		store.EXPECT().IsLatestSequence(context.Background(), gomock.Any(), gomock.Any()).DoAndReturn(func(context.Context, interface{}, interface{}) bool {
 			<-time.After(time.Duration(rand.Intn(60)) * time.Millisecond)
 			return true
@@ -72,8 +72,8 @@ func TestIsLatestSequencesNotLatest(t *testing.T) {
 
 	filters := make([]lastSequenceCheck, 1)
 	for i := uint64(0); int(i) < len(filters); i++ {
-		filterFuncs := []storage.FilterFunc{func(storage.Query) {}}
-		filters[i] = lastSequenceCheck{eventSequence: i, filters: filterFuncs}
+		Filters := []storage.Filter{func(storage.Query) {}}
+		filters[i] = lastSequenceCheck{eventSequence: i, filters: Filters}
 		store.EXPECT().IsLatestSequence(context.Background(), gomock.Any(), gomock.Any()).DoAndReturn(func(context.Context, interface{}, interface{}) bool {
 			<-time.After(time.Duration(rand.Intn(60)) * time.Millisecond)
 			return false

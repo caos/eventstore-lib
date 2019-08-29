@@ -42,7 +42,7 @@ func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFil
 	defer func() { span.EndWithError(err) }()
 
 	eventType := reflect.TypeOf(events).Elem().Elem().Elem() // *[]*Event
-	filters := make([]storage.FilterFunc, 0)
+	filters := make([]storage.Filter, 0)
 
 	storageFilters, err := es.createStorageFilter(eventType, eventFilters.GetFilters()...)
 	if err != nil {
