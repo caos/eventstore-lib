@@ -28,7 +28,7 @@ func TestCreateStorageFilter(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	svc := new(Service)
 	stor := storage_mock.NewMockStorage(ctrl)
-	svc.stor = stor
+	svc.store = stor
 
 	var filters []models.Filter
 	typeFilter := models_mock.NewMockFilter(ctrl)
@@ -54,7 +54,7 @@ func TestCreateStorageFilterWrongFieldname(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	svc := new(Service)
 	stor := storage_mock.NewMockStorage(ctrl)
-	svc.stor = stor
+	svc.store = stor
 
 	var filters []models.Filter
 	wrongFilter := models_mock.NewMockFilter(ctrl)

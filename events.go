@@ -27,14 +27,14 @@ func (es *Service) CreateEvents(ctx context.Context, events ...models.Event) (er
 		return caos_errs.ThrowAlreadyExists(nil, "EVENT-RXWTQ", "sequence wrong")
 	}
 
-	return es.stor.CreateEvents(ctx, events...)
+	return es.store.CreateEvents(ctx, events...)
 }
 
 func (es *Service) GetEvent(ctx context.Context, event models.Event, eventID string) (err error) {
 	ctx, span := tracing.NewServerSpan(ctx)
 	defer func() { span.EndWithError(err) }()
 
-	return es.stor.GetEvent(ctx, event, eventID)
+	return es.store.GetEvent(ctx, event, eventID)
 }
 
 func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFilters models.EventFilter) (err error) {
@@ -56,5 +56,5 @@ func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFil
 	}
 	filters = append(filters, aggregateFilters...)
 
-	return es.stor.GetEvents(ctx, events, filters...)
+	return es.store.GetEvents(ctx, events, filters...)
 }

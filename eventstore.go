@@ -8,6 +8,7 @@ import (
 )
 
 type Eventstore interface {
+	Start() error
 	Health() error
 
 	CreateEvents(ctx context.Context, events ...models.Event) error
@@ -18,11 +19,15 @@ type Eventstore interface {
 var _ Eventstore = (*Service)(nil)
 
 type Service struct {
-	stor                  storage.Storage
+	store                 storage.Storage
 	createSequenceFilters func(events ...models.Event) (check []lastSequenceCheck, err error)
 	isLatestSequences     func(ctx context.Context, checks ...lastSequenceCheck) bool
 }
 
+func (es *Service) Start() error {
+	return es.store.Start()
+}
+
 func (es *Service) Health() error {
-	return es.stor.Health()
+	return es.store.Health()
 }

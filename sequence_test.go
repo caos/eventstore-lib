@@ -47,7 +47,7 @@ func TestIsLatestSequences(t *testing.T) {
 	svc := new(Service)
 	svc.setIsLatestSequences()
 	store := storage_mock.NewMockStorage(ctrl)
-	svc.stor = store
+	svc.store = store
 
 	filters := make([]lastSequenceCheck, 1)
 	for i := uint64(0); int(i) < len(filters); i++ {
@@ -68,7 +68,7 @@ func TestIsLatestSequencesNotLatest(t *testing.T) {
 	svc := new(Service)
 	svc.setIsLatestSequences()
 	store := storage_mock.NewMockStorage(ctrl)
-	svc.stor = store
+	svc.store = store
 
 	filters := make([]lastSequenceCheck, 1)
 	for i := uint64(0); int(i) < len(filters); i++ {

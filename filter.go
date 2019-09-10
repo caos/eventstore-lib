@@ -18,15 +18,14 @@ func (es *Service) createStorageFilter(eventType reflect.Type, filters ...models
 			return nil, caos_errs.ThrowInvalidArgument(nil, "EVEN-0VE0d", fmt.Sprintf("fieldname \"%v\" not in event", filter.GetField()))
 		}
 
-		Filter, err := es.stor.BuildFilter(filter, field)
+		Filter, err := es.store.BuildFilter(filter, field)
 		if err != nil {
 			return nil, err
 		}
-
 		Filters[idx] = Filter
 	}
 	return Filters, nil
-}
+} 
 
 func buildFieldnameFilter(filterFieldname string) func(string) bool {
 	return func(fieldname string) bool {

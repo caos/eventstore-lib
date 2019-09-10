@@ -14,7 +14,7 @@ type testEvent struct {
 
 func newTestService(stor storage.Storage) Eventstore {
 	svc := new(Service)
-	svc.stor = stor
+	svc.store = stor
 	svc.isLatestSequences = newTestIsLatestSequences()
 	svc.createSequenceFilters = newTestCreateSequenceFilters()
 

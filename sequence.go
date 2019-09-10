@@ -37,7 +37,7 @@ func (svc *Service) setIsLatestSequences() {
 				wg.Add(1)
 				go func(sequenceCheck lastSequenceCheck) {
 					defer wg.Done()
-					isLatest <- svc.stor.IsLatestSequence(ctx, sequenceCheck.eventSequence, sequenceCheck.filters...)
+					isLatest <- svc.store.IsLatestSequence(ctx, sequenceCheck.eventSequence, sequenceCheck.filters...)
 				}(check)
 			}
 			wg.Wait()

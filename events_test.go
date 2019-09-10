@@ -18,7 +18,7 @@ import (
 
 func initSvc(t *testing.T) *Service {
 	svc := new(Service)
-	svc.stor = storage_mock.NewMockStorage(gomock.NewController(t))
+	svc.store = storage_mock.NewMockStorage(gomock.NewController(t))
 
 	return svc
 }
@@ -31,7 +31,7 @@ func TestGetEvent(t *testing.T) {
 	svc := new(Service)
 	stor := storage_mock.NewMockStorage(gomock.NewController(t))
 	stor.EXPECT().GetEvent(context.Background(), event, eventID).Return(nil)
-	svc.stor = stor
+	svc.store = stor
 
 	err := svc.GetEvent(ctx, event, eventID)
 	assert.NoError(t, err)
@@ -45,7 +45,7 @@ func TestGetEventWrongID(t *testing.T) {
 	svc := new(Service)
 	stor := storage_mock.NewMockStorage(gomock.NewController(t))
 	stor.EXPECT().GetEvent(context.Background(), event, eventID).Return(errors.ThrowNotFound(nil, "EVENT-czr9y", "id not found"))
-	svc.stor = stor
+	svc.store = stor
 
 	err := svc.GetEvent(ctx, event, eventID)
 	assert.Error(t, err)
@@ -74,7 +74,7 @@ func TestCreateEventsOneEvent(t *testing.T) {
 	event := models_mock.NewMockEvent(ctrl)
 	store := storage_mock.NewMockStorage(ctrl)
 	store.EXPECT().CreateEvents(context.Background(), event).Return(nil)
-	svc.stor = store
+	svc.store = store
 
 	err := svc.CreateEvents(context.Background(), event)
 	assert.NoError(t, err)
@@ -120,7 +120,7 @@ func TestGetEvents(t *testing.T) {
 
 	store := storage_mock.NewMockStorage(ctrl)
 	store.EXPECT().GetEvents(context.Background(), events, []storage.Filter{})
-	svc.stor = store
+	svc.store = store
 
 	err := svc.GetEvents(context.Background(), events, eventFilter)
 	assert.NoError(t, err)

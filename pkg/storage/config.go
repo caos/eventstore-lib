@@ -1,7 +1,7 @@
 package storage
 
 type Config interface {
-	NewStorage() Storage
+	New() Storage
 }
 
 // Option is an optional extension of the storage layer (e.g. for caching)
