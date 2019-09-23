@@ -20,7 +20,7 @@ func TestNew(t *testing.T) {
 
 type storageConfig struct{}
 
-func (c *storageConfig) NewStorage() storage.Storage {
+func (c *storageConfig) New() storage.Storage {
 	return nil
 }
 

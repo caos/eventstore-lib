@@ -3,14 +3,24 @@ module github.com/caos/eventstore-lib
 go 1.13
 
 require (
-	github.com/caos/utils v0.0.0-20190806151324-b7c42b73d8e9
+	github.com/caos/utils/cache v0.0.0-00010101000000-000000000000
+	github.com/caos/utils/errors v0.0.0-00010101000000-000000000000
+	github.com/caos/utils/logging v0.0.0-00010101000000-000000000000
+	github.com/caos/utils/tracing v0.0.0-00010101000000-000000000000
 	github.com/golang/mock v1.3.1
-	github.com/grpc-ecosystem/grpc-gateway v1.11.1 // indirect
-	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
-	github.com/stretchr/testify v1.3.0
-	golang.org/x/sys v0.0.0-20190909082730-f460065e899a // indirect
-	google.golang.org/genproto v0.0.0-20190905072037-92dd089d5514 // indirect
-	google.golang.org/grpc v1.23.0 // indirect
+	github.com/stretchr/testify v1.4.0
 )
 
-replace github.com/caos/utils => /Users/silvanreusser/go/src/github.com/caos/utils
+replace github.com/caos/utils/cache => /Users/silvanreusser/go/src/github.com/caos/utils/cache
+
+replace github.com/caos/utils/tracing => /Users/silvanreusser/go/src/github.com/caos/utils/tracing
+
+replace github.com/caos/utils/logging => /Users/silvanreusser/go/src/github.com/caos/utils/logging
+
+replace github.com/caos/utils/pairs => /Users/silvanreusser/go/src/github.com/caos/utils/pairs
+
+replace github.com/caos/utils/config => /Users/silvanreusser/go/src/github.com/caos/utils/config
+
+replace github.com/caos/utils/errors => /Users/silvanreusser/go/src/github.com/caos/utils/errors
+
+replace github.com/caos/utils/helpers => /Users/silvanreusser/go/src/github.com/caos/utils/helpers

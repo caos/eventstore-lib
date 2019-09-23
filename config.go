@@ -7,7 +7,7 @@ import (
 
 type Config struct {
 	Store storage.Config
-}
+} 
 
 func (c *Config) New() Eventstore {
 	es := new(Service)

@@ -25,7 +25,7 @@ func (es *Service) createStorageFilter(eventType reflect.Type, filters ...models
 		Filters[idx] = Filter
 	}
 	return Filters, nil
-} 
+}
 
 func buildFieldnameFilter(filterFieldname string) func(string) bool {
 	return func(fieldname string) bool {
