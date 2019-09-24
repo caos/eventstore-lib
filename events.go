@@ -2,59 +2,90 @@ package eventstore
 
 import (
 	"context"
-	"reflect"
 
 	"github.com/caos/eventstore-lib/pkg/models"
-	"github.com/caos/eventstore-lib/pkg/storage"
-	caos_errs "github.com/caos/utils/errors"
+	"github.com/caos/utils/errors"
 	"github.com/caos/utils/tracing"
 )
 
-func (es *Service) CreateEvents(ctx context.Context, events ...models.Event) (err error) {
+type validtor struct {
+	models.Aggregate
+}
+
+func (v *validtor) EventCount() int {
+	return v.Events().Len()
+}
+
+func (es *Service) PushEvents(ctx context.Context, aggregates ...models.Aggregate) (err error) {
 	ctx, span := tracing.NewServerSpan(ctx)
 	defer func() { span.EndWithError(err) }()
 
-	if events == nil {
+	if aggregates == nil {
 		return nil
 	}
 
-	sequenceFilters, err := es.createSequenceFilters(events...)
-	if err != nil {
-		return err
+	for _, aggregate := range aggregates {
+		err := es.store.ValidateAndReserveSequence(ctx, &validtor{Aggregate: aggregate})
+		if err != nil {
+			return errors.ThrowInvalidArgument(err, "EVENT-uwJjT", "sequence wrong")
+		}
+		for idx, event := range aggregate.Events().GetAll() {
+			event.SetSequence(aggregate.LatestSequence() + 1 + uint64(idx))
+		}
 	}
 
-	if isLatest := es.isLatestSequences(ctx, sequenceFilters...); !isLatest {
-		return caos_errs.ThrowAlreadyExists(nil, "EVENT-RXWTQ", "sequence wrong")
-	}
-
-	return es.store.CreateEvents(ctx, events...)
+	return es.store.PushEvents(ctx, aggregates...)
 }
 
-func (es *Service) GetEvent(ctx context.Context, event models.Event, eventID string) (err error) {
-	ctx, span := tracing.NewServerSpan(ctx)
-	defer func() { span.EndWithError(err) }()
+/*
 
-	return es.store.GetEvent(ctx, event, eventID)
-}
+Agg: User
+ID: "402853029482093"
+LS: 0
+Events: [
+	username
+	password
+	firstname
+]
 
-func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFilters models.EventFilter) (err error) {
-	ctx, span := tracing.NewServerSpan(ctx)
-	defer func() { span.EndWithError(err) }()
+Agg: Unique_username
+ID "rs380"
+LS: 0
+Events: [
+	used
+]
 
-	eventType := reflect.TypeOf(events).Elem().Elem().Elem() // *[]*Event
-	filters := make([]storage.Filter, 0)
+1. Validate and Reserve Sequences per aggregate (agg.ID, agg.Type, agg.LatestSequence)
+2. Set reserved Sequences on the events
+3. write events
 
-	storageFilters, err := es.createStorageFilter(eventType, eventFilters.GetFilters()...)
-	if err != nil {
-		return err
-	}
-	filters = append(filters, storageFilters...)
+*/
 
-	aggregateFilters, err := es.createStorageFilter(eventType, eventFilters.GetAggregate().ToFilters()...)
-	if err != nil {
-		return err
-	}
-	filters = append(filters, aggregateFilters...)
+// func (es *Service) GetEvent(ctx context.Context, event models.Event, eventID string) (err error) {
+// 	ctx, span := tracing.NewServerSpan(ctx)
+// 	defer func() { span.EndWithError(err) }()
 
-	return es.store.GetEvents(ctx, events, filters...)
-}
+// 	return es.store.GetEvent(ctx, event, eventID)
+// }
+
+// func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFilters models.EventFilter) (err error) {
+// 	ctx, span := tracing.NewServerSpan(ctx)
+// 	defer func() { span.EndWithError(err) }()
+
+// 	eventType := reflect.TypeOf(events).Elem().Elem().Elem() // *[]*Event
+// 	filters := make([]storage.Filter, 0)
+
+// 	storageFilters, err := es.createStorageFilter(eventType, eventFilters.GetFilters()...)
+// 	if err != nil {
+// 		return err
+// 	}
+// 	filters = append(filters, storageFilters...)
+
+// 	aggregateFilters, err := es.createStorageFilter(eventType, eventFilters.GetAggregate().ToFilters()...)
+// 	if err != nil {
+// 		return err
+// 	}
+// 	filters = append(filters, aggregateFilters...)
+
+// 	return es.store.GetEvents(ctx, events, filters...)
+// }

@@ -1,8 +1,8 @@
 package models
 
-type Aggregate interface {
+type Validator interface {
 	Type() string
 	ID() string
-	Events() Events
 	LatestSequence() uint64
+	EventCount() int
 }

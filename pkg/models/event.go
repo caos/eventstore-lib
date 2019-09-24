@@ -7,21 +7,21 @@ type Events interface {
 	Len() int
 	Get(index int) Event
 	GetAll() []Event
-	Append(events Event) Events
-	Insert(position int, event Event) Events
-	Iterate(func(event Event) error) error
+	Append(events Event)
+	Insert(position int, event Event)
+	// Iterate(func(event Event) error) error
 }
 
 // Event represents the minimal representation of an eventstore event
 type Event interface {
-	GetID() string
-	GetCreationDate() time.Time
+	ID() string
+
+	CreationDate() time.Time
 	SetCreationDate(time.Time)
-	GetCommand() string
+
+	Command() string
+
 	SetSequence(sequence uint64)
-	GetSequence() uint64
-	GetLastSequence() uint64
-	SetLastSequence(uint64)
-	GetAggregate() Aggregate
-	GetData() []byte
+
+	Data() []byte
 }
