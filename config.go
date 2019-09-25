@@ -11,8 +11,6 @@ type Config struct {
 
 func (c *Config) New() Eventstore {
 	es := new(Service)
-	// es.setCreateSequenceFilters()
-	// es.setIsLatestSequences()
 
 	if c.Store == nil {
 		logging.Log("EVENT-PLdu7").Panic("no storage config provided")
