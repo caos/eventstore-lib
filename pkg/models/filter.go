@@ -1,8 +1,9 @@
 package models
 
-type EventFilter interface {
-	GetAggregate() Aggregate
-	GetFilters() []Filter
+type Filters interface {
+	AggregateType() string
+	AggregateID() string
+	Filters() []Filter
 }
 
 type Filter interface {

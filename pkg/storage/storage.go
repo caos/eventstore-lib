@@ -16,4 +16,5 @@ type Storage interface {
 	ValidateLatestSequence(ctx context.Context, aggregates ...models.Aggregate) error
 	PushEvents(ctx context.Context, aggregates ...models.Aggregate) error
 	UnlockAggregates(ctx context.Context, aggregates ...models.Aggregate) error
+	Filter(ctx context.Context, events models.Events, filters models.Filters) error
 }

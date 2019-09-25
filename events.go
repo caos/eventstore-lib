@@ -38,24 +38,9 @@ func (es *Service) PushEvents(ctx context.Context, aggregates ...models.Aggregat
 	return es.store.PushEvents(ctx, aggregates...)
 }
 
-// func (es *Service) GetEvents(ctx context.Context, events models.Events, eventFilters models.EventFilter) (err error) {
-// 	ctx, span := tracing.NewServerSpan(ctx)
-// 	defer func() { span.EndWithError(err) }()
+func (es *Service) Filter(ctx context.Context, events models.Events, filters models.Filters) (err error) {
+	ctx, span := tracing.NewServerSpan(ctx)
+	defer func() { span.EndWithError(err) }()
 
-// 	eventType := reflect.TypeOf(events).Elem().Elem().Elem() // *[]*Event
-// 	filters := make([]storage.Filter, 0)
-
-// 	storageFilters, err := es.createStorageFilter(eventType, eventFilters.GetFilters()...)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	filters = append(filters, storageFilters...)
-
-// 	aggregateFilters, err := es.createStorageFilter(eventType, eventFilters.GetAggregate().ToFilters()...)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	filters = append(filters, aggregateFilters...)
-
-// 	return es.store.GetEvents(ctx, events, filters...)
-// }
+	return es.store.Filter(ctx, events, filters)
+}
