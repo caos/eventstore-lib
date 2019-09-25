@@ -9,6 +9,7 @@ require (
 	github.com/caos/utils/tracing v0.0.0-00010101000000-000000000000
 	github.com/golang/mock v1.3.1
 	github.com/stretchr/testify v1.4.0
+	golang.org/x/sys v0.0.0-20190924154521-2837fb4f24fe // indirect
 )
 
 replace github.com/caos/utils/cache => /Users/silvanreusser/go/src/github.com/caos/utils/cache
