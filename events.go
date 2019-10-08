@@ -29,12 +29,6 @@ func (es *Service) PushEvents(ctx context.Context, aggregates ...models.Aggregat
 		return err
 	}
 
-	for _, aggregate := range aggregates {
-		for idx, event := range aggregate.Events().GetAll() {
-			event.SetSequence(aggregate.LatestSequence() + uint64(idx) + 1)
-		}
-	}
-
 	return es.store.PushEvents(ctx, aggregates...)
 }
 
