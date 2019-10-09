@@ -6,7 +6,7 @@ type Filters interface {
 }
 
 type Filter interface {
-	GetField() uint64
+	GetField() int32
 	GetOperation() Operation
 	GetValue() interface{}
 }
