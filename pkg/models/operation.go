@@ -1,13 +1,9 @@
 package models
 
-type Operation struct {
-	ID   int32
-	Name string
-}
+type Operation int32
 
-var (
-	OperationUnknown = Operation{ID: 0, Name: "unknown"}
-	OperationEquals  = Operation{ID: 1, Name: "EQUAL"}
-	OperationGreater = Operation{ID: 2, Name: "GREATER"}
-	OperationLess    = Operation{ID: 3, Name: "LESS"}
+const (
+	Equals  Operation = 0
+	Greater Operation = 1
+	Less    Operation = 2
 )
