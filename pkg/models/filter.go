@@ -1,13 +1,16 @@
 package models
 
 type Filters interface {
-	AggregateType() string
-	AggregateID() string
+	Limit() uint64
 	Filters() []Filter
 }
 
 type Filter interface {
-	GetField() string
+	GetField() Field
 	GetOperation() Operation
 	GetValue() interface{}
 }
+
+type Field int32
+
+type Operation int32
