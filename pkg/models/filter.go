@@ -6,11 +6,11 @@ type Filters interface {
 }
 
 type Filter interface {
-	GetField() FilterEventKey
+	GetField() Field
 	GetOperation() Operation
 	GetValue() interface{}
 }
 
-type FilterEventKey int32
+type Field int32
 
 type Operation int32
