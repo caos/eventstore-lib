@@ -12,7 +12,7 @@ type Eventstore interface {
 	Health() error
 
 	PushEvents(ctx context.Context, events ...models.Aggregate) error
-	Filter(ctx context.Context, events models.Events, filters models.Filters) error
+	Filter(ctx context.Context, events models.Events, query models.SearchQuery) error
 }
 
 var _ Eventstore = (*Service)(nil)

@@ -17,28 +17,28 @@ func (e *MockEvents) GetAll() []models.Event {
 	}
 	return events
 }
-func (e *MockEvents) Append(event models.Event) models.Events {
+func (e *MockEvents) Append(event models.Event) {
 	mockEvent, ok := event.(*MockEvent)
 	if !ok {
-		return e
+		return
 	}
 	*e = append(*e, mockEvent)
-	return e
+	return
 }
-func (e *MockEvents) Insert(position int, event models.Event) models.Events {
+func (e *MockEvents) Insert(position int, event models.Event) {
 	if len(*e) < position {
 		e.Append(event)
 	}
 	mockEvent, ok := event.(*MockEvent)
 	if !ok {
-		return e
+		return
 	}
 	events := (*e)[:position]
 	events = append(events, mockEvent)
 	events = append(events, (*e)[position+1:]...)
 
 	*e = events
-	return e
+	return
 }
 func (e *MockEvents) Iterate(f func(event models.Event) error) error {
 	for _, event := range *e {

@@ -32,9 +32,9 @@ func (es *Service) PushEvents(ctx context.Context, aggregates ...models.Aggregat
 	return es.store.PushEvents(ctx, aggregates...)
 }
 
-func (es *Service) Filter(ctx context.Context, events models.Events, filters models.Filters) (err error) {
+func (es *Service) Filter(ctx context.Context, events models.Events, query models.SearchQuery) (err error) {
 	ctx, span := tracing.NewServerSpan(ctx)
 	defer func() { span.EndWithError(err) }()
 
-	return es.store.Filter(ctx, events, filters)
+	return es.store.Filter(ctx, events, query)
 }

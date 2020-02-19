@@ -1,7 +1,8 @@
 package models
 
-type Filters interface {
+type SearchQuery interface {
 	Limit() uint64
+	OrderDesc() bool
 	Filters() []Filter
 }
 
