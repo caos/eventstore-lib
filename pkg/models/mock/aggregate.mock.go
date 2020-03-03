@@ -33,58 +33,58 @@ func (m *MockAggregate) EXPECT() *MockAggregateMockRecorder {
 	return m.recorder
 }
 
-// GetID mocks base method
-func (m *MockAggregate) GetID() string {
+// Events mocks base method
+func (m *MockAggregate) Events() models.Events {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetID")
+	ret := m.ctrl.Call(m, "Events")
+	ret0, _ := ret[0].(models.Events)
+	return ret0
+}
+
+// Events indicates an expected call of Events
+func (mr *MockAggregateMockRecorder) Events() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Events", reflect.TypeOf((*MockAggregate)(nil).Events))
+}
+
+// ID mocks base method
+func (m *MockAggregate) ID() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ID")
 	ret0, _ := ret[0].(string)
 	return ret0
 }
 
-// GetID indicates an expected call of GetID
-func (mr *MockAggregateMockRecorder) GetID() *gomock.Call {
+// ID indicates an expected call of ID
+func (mr *MockAggregateMockRecorder) ID() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetID", reflect.TypeOf((*MockAggregate)(nil).GetID))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ID", reflect.TypeOf((*MockAggregate)(nil).ID))
 }
 
-// GetType mocks base method
-func (m *MockAggregate) GetType() string {
+// LatestSequence mocks base method
+func (m *MockAggregate) LatestSequence() uint64 {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetType")
+	ret := m.ctrl.Call(m, "LatestSequence")
+	ret0, _ := ret[0].(uint64)
+	return ret0
+}
+
+// LatestSequence indicates an expected call of LatestSequence
+func (mr *MockAggregateMockRecorder) LatestSequence() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LatestSequence", reflect.TypeOf((*MockAggregate)(nil).LatestSequence))
+}
+
+// Type mocks base method
+func (m *MockAggregate) Type() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Type")
 	ret0, _ := ret[0].(string)
 	return ret0
 }
 
-// GetType indicates an expected call of GetType
-func (mr *MockAggregateMockRecorder) GetType() *gomock.Call {
+// Type indicates an expected call of Type
+func (mr *MockAggregateMockRecorder) Type() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetType", reflect.TypeOf((*MockAggregate)(nil).GetType))
-}
-
-// GetVersion mocks base method
-func (m *MockAggregate) GetVersion() string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetVersion")
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// GetVersion indicates an expected call of GetVersion
-func (mr *MockAggregateMockRecorder) GetVersion() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVersion", reflect.TypeOf((*MockAggregate)(nil).GetVersion))
-}
-
-// ToFilters mocks base method
-func (m *MockAggregate) ToFilters() []models.Filter {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ToFilters")
-	ret0, _ := ret[0].([]models.Filter)
-	return ret0
-}
-
-// ToFilters indicates an expected call of ToFilters
-func (mr *MockAggregateMockRecorder) ToFilters() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ToFilters", reflect.TypeOf((*MockAggregate)(nil).ToFilters))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Type", reflect.TypeOf((*MockAggregate)(nil).Type))
 }

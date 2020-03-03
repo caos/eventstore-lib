@@ -35,71 +35,18 @@ func (m *MockStorage) EXPECT() *MockStorageMockRecorder {
 	return m.recorder
 }
 
-// BuildFilter mocks base method
-func (m *MockStorage) BuildFilter(arg0 models.Filter, arg1 reflect.StructField) (storage.Filter, error) {
+// Filter mocks base method
+func (m *MockStorage) Filter(arg0 context.Context, arg1 models.Events, arg2 models.SearchQuery) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "BuildFilter", arg0, arg1)
-	ret0, _ := ret[0].(storage.Filter)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// BuildFilter indicates an expected call of BuildFilter
-func (mr *MockStorageMockRecorder) BuildFilter(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BuildFilter", reflect.TypeOf((*MockStorage)(nil).BuildFilter), arg0, arg1)
-}
-
-// CreateEvents mocks base method
-func (m *MockStorage) CreateEvents(arg0 context.Context, arg1 ...models.Event) error {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0}
-	for _, a := range arg1 {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "CreateEvents", varargs...)
+	ret := m.ctrl.Call(m, "Filter", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
-// CreateEvents indicates an expected call of CreateEvents
-func (mr *MockStorageMockRecorder) CreateEvents(arg0 interface{}, arg1 ...interface{}) *gomock.Call {
+// Filter indicates an expected call of Filter
+func (mr *MockStorageMockRecorder) Filter(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0}, arg1...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateEvents", reflect.TypeOf((*MockStorage)(nil).CreateEvents), varargs...)
-}
-
-// GetEvent mocks base method
-func (m *MockStorage) GetEvent(arg0 context.Context, arg1 models.Event, arg2 string) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetEvent", arg0, arg1, arg2)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// GetEvent indicates an expected call of GetEvent
-func (mr *MockStorageMockRecorder) GetEvent(arg0, arg1, arg2 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetEvent", reflect.TypeOf((*MockStorage)(nil).GetEvent), arg0, arg1, arg2)
-}
-
-// GetEvents mocks base method
-func (m *MockStorage) GetEvents(arg0 context.Context, arg1 models.Events, arg2 ...storage.Filter) error {
-	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
-	for _, a := range arg2 {
-		varargs = append(varargs, a)
-	}
-	ret := m.ctrl.Call(m, "GetEvents", varargs...)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// GetEvents indicates an expected call of GetEvents
-func (mr *MockStorageMockRecorder) GetEvents(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetEvents", reflect.TypeOf((*MockStorage)(nil).GetEvents), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Filter", reflect.TypeOf((*MockStorage)(nil).Filter), arg0, arg1, arg2)
 }
 
 // Health mocks base method
@@ -116,23 +63,42 @@ func (mr *MockStorageMockRecorder) Health() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Health", reflect.TypeOf((*MockStorage)(nil).Health))
 }
 
-// IsLatestSequence mocks base method
-func (m *MockStorage) IsLatestSequence(arg0 context.Context, arg1 uint64, arg2 ...storage.Filter) bool {
+// LockAggregates mocks base method
+func (m *MockStorage) LockAggregates(arg0 context.Context, arg1 ...models.Aggregate) error {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []interface{}{arg0}
+	for _, a := range arg1 {
 		varargs = append(varargs, a)
 	}
-	ret := m.ctrl.Call(m, "IsLatestSequence", varargs...)
-	ret0, _ := ret[0].(bool)
+	ret := m.ctrl.Call(m, "LockAggregates", varargs...)
+	ret0, _ := ret[0].(error)
 	return ret0
 }
 
-// IsLatestSequence indicates an expected call of IsLatestSequence
-func (mr *MockStorageMockRecorder) IsLatestSequence(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+// LockAggregates indicates an expected call of LockAggregates
+func (mr *MockStorageMockRecorder) LockAggregates(arg0 interface{}, arg1 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IsLatestSequence", reflect.TypeOf((*MockStorage)(nil).IsLatestSequence), varargs...)
+	varargs := append([]interface{}{arg0}, arg1...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LockAggregates", reflect.TypeOf((*MockStorage)(nil).LockAggregates), varargs...)
+}
+
+// PushEvents mocks base method
+func (m *MockStorage) PushEvents(arg0 context.Context, arg1 ...models.Aggregate) error {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0}
+	for _, a := range arg1 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "PushEvents", varargs...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// PushEvents indicates an expected call of PushEvents
+func (mr *MockStorageMockRecorder) PushEvents(arg0 interface{}, arg1 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0}, arg1...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PushEvents", reflect.TypeOf((*MockStorage)(nil).PushEvents), varargs...)
 }
 
 // Start mocks base method
@@ -151,4 +117,42 @@ func (m *MockStorage) Start(arg0 ...storage.Option) error {
 func (mr *MockStorageMockRecorder) Start(arg0 ...interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Start", reflect.TypeOf((*MockStorage)(nil).Start), arg0...)
+}
+
+// UnlockAggregates mocks base method
+func (m *MockStorage) UnlockAggregates(arg0 context.Context, arg1 ...models.Aggregate) error {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0}
+	for _, a := range arg1 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UnlockAggregates", varargs...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// UnlockAggregates indicates an expected call of UnlockAggregates
+func (mr *MockStorageMockRecorder) UnlockAggregates(arg0 interface{}, arg1 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0}, arg1...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UnlockAggregates", reflect.TypeOf((*MockStorage)(nil).UnlockAggregates), varargs...)
+}
+
+// ValidateLatestSequence mocks base method
+func (m *MockStorage) ValidateLatestSequence(arg0 context.Context, arg1 ...models.Aggregate) error {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{arg0}
+	for _, a := range arg1 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ValidateLatestSequence", varargs...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// ValidateLatestSequence indicates an expected call of ValidateLatestSequence
+func (mr *MockStorageMockRecorder) ValidateLatestSequence(arg0 interface{}, arg1 ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{arg0}, arg1...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ValidateLatestSequence", reflect.TypeOf((*MockStorage)(nil).ValidateLatestSequence), varargs...)
 }
