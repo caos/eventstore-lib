@@ -4,12 +4,11 @@ import (
 	"context"
 
 	"github.com/caos/eventstore-lib/pkg/models"
-	"github.com/caos/eventstore-lib/pkg/storage"
+	"github.com/caos/eventstore-lib/pkg/repository"
 )
 
 type Eventstore interface {
-	Start() error
-	Health() error
+	Health(ctx context.Context) error
 
 	PushEvents(ctx context.Context, events ...models.Aggregate) error
 	Filter(ctx context.Context, events models.Events, query models.SearchQuery) error
@@ -18,13 +17,9 @@ type Eventstore interface {
 var _ Eventstore = (*Service)(nil)
 
 type Service struct {
-	store storage.Storage
+	repo repository.Repository
 }
 
-func (es *Service) Start() error {
-	return es.store.Start()
-}
-
-func (es *Service) Health() error {
-	return es.store.Health()
+func (es *Service) Health(ctx context.Context) error {
+	return es.store.Health(ctx)
 }

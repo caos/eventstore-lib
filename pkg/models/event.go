@@ -10,16 +10,4 @@ type Events interface {
 }
 
 // Event represents the minimal representation of an eventstore event
-type Event interface {
-	// ID() string
-
-	// CreationDate() time.Time
-	// SetCreationDate(time.Time)
-
-	// Command() string
-
-	// SetSequence(sequence uint64)
-	// SetLatestSequence(sequence uint64)
-
-	// Data() []byte
-}
+type Event interface{}
