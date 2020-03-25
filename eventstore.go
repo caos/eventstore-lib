@@ -21,5 +21,5 @@ type Service struct {
 }
 
 func (es *Service) Health(ctx context.Context) error {
-	return es.store.Health(ctx)
+	return es.repo.Health(ctx)
 }

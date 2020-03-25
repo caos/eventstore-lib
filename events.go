@@ -17,7 +17,7 @@ func (es *Service) PushEvents(ctx context.Context, aggregates ...models.Aggregat
 	}
 
 	defer func(lockedAggregates ...models.Aggregate) {
-		err := es.store.UnlockAggregates(ctx, lockedAggregates...)
+		err := es.repo.UnlockAggregates(ctx, lockedAggregates...)
 		logging.Log("EVENT-879yy").OnError(err).Error("unable to unlock aggregates")
 	}(aggregates...)
 
