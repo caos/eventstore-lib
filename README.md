@@ -7,6 +7,20 @@
 
 > This project is in alpha state. It can AND will continue breaking until version 1.0.0 is released
 
+## What Is It
+
+TBD
+
+## Supported Go Versions
+
+| Version | Supported          |
+|---------|--------------------|
+| <1.11   | :x:                |
+| 1.11    | :white_check_mark: |
+| 1.12    | :white_check_mark: |
+| 1.13    | :white_check_mark: |
+| 1.14    | not yet tested     |
+
 ## License
 
 The full functionality of this library is and stays open source and free to use for everyone. Visit our [website](https://caos.ch) and get in touch.
