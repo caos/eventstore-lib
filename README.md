@@ -19,7 +19,7 @@ TBD
 | 1.11    | :white_check_mark: |
 | 1.12    | :white_check_mark: |
 | 1.13    | :white_check_mark: |
-| 1.14    | not yet tested     |
+| 1.14    | :white_check_mark: |
 
 ## License
 
