@@ -1,9 +1,10 @@
 # eventstore-lib
 
-![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)
-![Github Release Badge](https://github.com/caos/eventstore-lib/workflows/Release/badge.svg)
-[![GitHub release](https://img.shields.io/github/release/caos/eventstore-lib)](https://GitHub.com/caos/eventstore-lib/releases/)
-[![GitHub license](https://img.shields.io/github/license/caos/eventstore-lib)](https://github.com/caos/eventstore-lib/blob/master/LICENSE)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Release](https://github.com/caos/eventstore-lib/workflows/Release/badge.svg)](https://github.com/caos/eventstore-lib/actions)
+[![license](https://badgen.net/github/license/caos/eventstore-lib/)](https://github.com/caos/eventstore-lib/blob/master/LICENSE)
+[![release](https://badgen.net/github/release/caos/eventstore-lib/stable)](https://github.com/caos/eventstore-lib/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/caos/eventstore-lib)](https://goreportcard.com/report/github.com/caos/eventstore-lib)
 
 > This project is in alpha state. It can AND will continue breaking until version 1.0.0 is released
 
